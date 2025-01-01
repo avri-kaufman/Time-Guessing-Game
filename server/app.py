@@ -38,8 +38,8 @@ def create_guess():
     cur = db.connection.cursor()
     user_id = request.json['user_id']
     location_id = request.json['location_id']
-    time_guessed = request.json['time_guess']
-    actual_time = datetime.datetime.now()
+    time_guessed = datetime.datetime.strptime(request.json['time_guess'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%d %H:%M:%S')
+    actual_time = datetime.datetime.now() # TODO: get the actual time in the location!
     cur.execute('INSERT INTO guess (user_id, location_id, time_guessed, actual_time) VALUES (%s, %s, %s, %s)', (user_id, location_id, time_guessed, actual_time))
     db.connection.commit()
     cur.close()

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { fetchLocations } from "../services/locationApi";
 
-function LocationSearch({ onLocationChoosed }) {
+function LocationSearch({ location, onLocationChange }) {
   const [locations, setLocations] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState("");
 
   useEffect(() => {
     const getLocations = async () => {
@@ -19,26 +18,25 @@ function LocationSearch({ onLocationChoosed }) {
 
   const handleLocationChange = (event) => {
     const locationId = event.target.value;
-    const selected = locations.find((loc) => loc.id === locationId);
-    setSelectedLocation(locationId);
-    if (onLocationChoosed && selected) {
-      onLocationChoosed(selected);
-    }
+    const selectedLocation = locations.find(
+      (loc) => loc.id === parseInt(locationId)
+    );
+    onLocationChange({ id: locationId, name: selectedLocation?.name || "" });
   };
 
   return (
     <div>
       <select
         id="location-select"
-        value={selectedLocation}
+        value={location?.id || ""}
         onChange={handleLocationChange}
       >
         <option value="" disabled>
           Choose Location
         </option>
-        {locations.map((location) => (
-          <option key={location.id} value={location.id}>
-            {location.name}
+        {locations.map((loc) => (
+          <option key={loc.id} value={loc.id}>
+            {loc.name}
           </option>
         ))}
       </select>
