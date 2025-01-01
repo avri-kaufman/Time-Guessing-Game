@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navbar, Container } from "react-bootstrap";
 import logo from "../assets/jooba_logo.png";
 

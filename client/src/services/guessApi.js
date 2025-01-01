@@ -10,9 +10,9 @@ export const fetchUserGuesses = async (userId) => {
   }
 };
 
-export const submitNewGuess = async () => {
+export const submitNewGuess = async (newGuess) => {
   try {
-    const response = await axios.post("/api/guesses");
+    const response = await axios.post("/api/guesses", newGuess);
     return response.data;
   } catch (error) {
     console.log("Error submiting new guess: ", error);
