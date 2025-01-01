@@ -1,10 +1,13 @@
 import "./App.css";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/NavBar";
+import GamePage from "./pages/GamePage";
 function App() {
   return (
-    <>
-      <h1>Hi from App component</h1>
-    </>
+    <div>
+      <Navbar />
+      <GamePage />
+    </div>
   );
 }
 

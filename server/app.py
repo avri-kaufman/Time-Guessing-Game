@@ -45,7 +45,7 @@ def create_guess():
     cur.close()
     return jsonify({'message': 'Guess added successfully'})
 
-# Serve get all user guesses    
+# Serve get user guesses    
 @app.route('/api/guesses/<int:id>', methods=['GET'])
 def get_user_guesses(id):
     cur = db.connection.cursor()
