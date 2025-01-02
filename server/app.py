@@ -2,7 +2,13 @@ from flask import Flask, send_from_directory, jsonify, request
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
+import sys
 import datetime
+from datetime import datetime
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), './utils')))
+
+from utils.time_utils import get_time_at_location
 
 load_dotenv('..')
 app = Flask(__name__, static_folder='../client/build', static_url_path='')
@@ -32,14 +38,23 @@ def get_location():
     locations = [{'id': row[0], 'name': row[1]} for row in data]
     return jsonify(locations)
 
+def get_location_by_id(location_id):
+    cur = db.connection.cursor()
+    cur.execute('SELECT name FROM location WHERE id = %s', (location_id,))
+    result = cur.fetchone()
+    cur.close()
+    return result[0] if result else None
+
 # Serve submit guess end point
 @app.route('/api/guesses', methods=['POST'])
 def create_guess():
+    
     cur = db.connection.cursor()
     user_id = request.json['user_id']
     location_id = request.json['location_id']
-    time_guessed = datetime.datetime.strptime(request.json['time_guess'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%d %H:%M:%S')
-    actual_time = datetime.datetime.now() # TODO: get the actual time in the location!
+    time_guessed = datetime.strptime(request.json['time_guess'], '%H:%M:%S').time()
+    cuntry_name = get_location_by_id(location_id)
+    actual_time = get_time_at_location(cuntry_name)
     cur.execute('INSERT INTO guess (user_id, location_id, time_guessed, actual_time) VALUES (%s, %s, %s, %s)', (user_id, location_id, time_guessed, actual_time))
     db.connection.commit()
     cur.close()

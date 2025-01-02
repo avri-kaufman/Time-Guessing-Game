@@ -10,7 +10,7 @@ function GamePage() {
   const handleSubmitGuess = async () => {
     if (location && timeGuess) {
       submitNewGuess({
-        user_id: null,
+        user_id: 1,
         location_id: location.id,
         time_guess: timeGuess,
       });

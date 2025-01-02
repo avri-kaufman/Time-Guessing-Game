@@ -6,13 +6,18 @@ import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import dayjs from "dayjs";
 
 const GameTimePicker = ({ time, onTimeChange }) => {
+  const handleTimeChange = (newValue) => {
+    // Format time as HH:mm:ss
+    const formattedTime = newValue.format("HH:mm:ss");
+    onTimeChange(formattedTime);
+  };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoItem>
         <StaticTimePicker
-          defaultValue={dayjs("2022-04-17T10:10")}
-          value={time}
-          onChange={(newValue) => onTimeChange(newValue)}
+          defaultValue={dayjs()}
+          value={time ? dayjs(`2024-01-01T${time}`) : null}
+          onChange={handleTimeChange}
           componentsProps={{ actionBar: { actions: [] } }}
         />
       </DemoItem>
