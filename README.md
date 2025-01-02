@@ -57,7 +57,7 @@ TimeGuessingGame/
 ### **Clone the Repository**
 
 ```bash
-git clone https://github.com/...
+git clone https://github.com/...](https://github.com/avri-kaufman/Time-Guessing-Game
 ```
 
 ### **Install Dependencies**
