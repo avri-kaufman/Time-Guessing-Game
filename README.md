@@ -57,7 +57,7 @@ TimeGuessingGame/
 ### **Clone the Repository**
 
 ```bash
-git clone https://github.com/...](https://github.com/avri-kaufman/Time-Guessing-Game
+git clone https://github.com/avri-kaufman/Time-Guessing-Game
 ```
 
 ### **Install Dependencies**
@@ -83,6 +83,7 @@ pip install -r requirements.txt
 1. Open `db-schema.pdf` and review the database schema.
 2. Create the tables in your MySQL database using the schema.
 3. Insert some test users into the `user` table.
+4. Insert some locations into the `location` table.
 
 ### **Create .env File**
 
