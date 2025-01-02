@@ -1,0 +1,5 @@
+Flask==3.0.0
+Flask-MySQLdb==1.0.1
+python-dotenv==1.0.1
+pytz==2024.1
+pycountry==23.12.11
