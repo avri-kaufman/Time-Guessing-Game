@@ -20,6 +20,7 @@
     "react-bootstrap-time-picker": "^2.0.1",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^7.1.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^4.2.4"
   },

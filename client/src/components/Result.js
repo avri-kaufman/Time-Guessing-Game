@@ -26,9 +26,7 @@ const Result = ({ res, locations }) => {
       }}
     >
       <Card.Body>
-        <Card.Title className="text-center fw-bold mb-3 text-primary">
-          Result Details
-        </Card.Title>
+        <Card.Title className="text-center fw-bold mb-3 text-primary"></Card.Title>
         <div className="d-flex flex-column gap-2">
           <div className="p-2 bg-white rounded">
             <strong className="text-secondary">Location:</strong> {locationName}

@@ -11,19 +11,18 @@ function GamePage() {
   const [lastGuesses, setLastGuesses] = useState(null);
   const [locations, setLocations] = useState([]);
 
+  const fetchData = async () => {
+    try {
+      const guesses = await fetchUserGuesses(1);
+      setLastGuesses(guesses);
+
+      const locations = await fetchLocations();
+      setLocations(locations);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const guesses = await fetchUserGuesses(1);
-        setLastGuesses(guesses);
-
-        const locations = await fetchLocations();
-        setLocations(locations);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    };
-
     fetchData();
   }, []);
 
@@ -34,6 +33,8 @@ function GamePage() {
         location_id: location.id,
         time_guess: timeGuess,
       });
+      alert("Your guess submited successfully");
+      await fetchData();
     } else {
       alert("Please choose time and location!");
     }
