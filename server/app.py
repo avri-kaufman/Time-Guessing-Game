@@ -64,11 +64,11 @@ def create_guess():
 @app.route('/api/guesses/<int:id>', methods=['GET'])
 def get_user_guesses(id):
     cur = db.connection.cursor()
-    cur.execute('SELECT * FROM guess WHERE user_id= %s', (id,))
+    cur.execute('SELECT * FROM guess WHERE user_id= %s ORDER BY id DESC LIMIT 3', (id,))
     data = cur.fetchall()
     cur.close()
     guesses = [
-        {'id': row[0], 'user_id': row[1], 'location_id': row[2], 'time_guessed': row[3], 'actual_time': row[4]}
+        {'id': row[0], 'user_id': row[1], 'location_id': row[2], 'time_guessed': str(row[3]), 'actual_time': str(row[4])}
         for row in data
     ]
     return jsonify(guesses)

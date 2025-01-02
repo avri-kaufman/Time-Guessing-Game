@@ -1,21 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { fetchLocations } from "../services/locationApi";
+import React from "react";
 
-function LocationSearch({ location, onLocationChange }) {
-  const [locations, setLocations] = useState([]);
-
-  useEffect(() => {
-    const getLocations = async () => {
-      try {
-        const data = await fetchLocations();
-        setLocations(data);
-      } catch (error) {
-        console.error("Error fetching locations: ", error);
-      }
-    };
-    getLocations();
-  }, []);
-
+function LocationSearch({ location, onLocationChange, locations }) {
   const handleLocationChange = (event) => {
     const locationId = event.target.value;
     const selectedLocation = locations.find(
@@ -24,12 +9,36 @@ function LocationSearch({ location, onLocationChange }) {
     onLocationChange({ id: locationId, name: selectedLocation?.name || "" });
   };
 
+  // return (
+  //   <div>
+  //     <select
+  //       id="location-select"
+  //       value={location?.id || ""}
+  //       onChange={handleLocationChange}
+  //     >
+  //       <option value="" disabled>
+  //         Choose Location
+  //       </option>
+  //       {locations.map((loc) => (
+  //         <option key={loc.id} value={loc.id}>
+  //           {loc.name}
+  //         </option>
+  //       ))}
+  //     </select>
+  //   </div>
+  // );
   return (
-    <div>
+    <div className="form-group">
       <select
         id="location-select"
         value={location?.id || ""}
         onChange={handleLocationChange}
+        className="form-select form-select-lg mb-3 shadow-sm"
+        style={{
+          borderRadius: "8px",
+          padding: "12px",
+          fontSize: "16px",
+        }}
       >
         <option value="" disabled>
           Choose Location

@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 
 const GameTimePicker = ({ time, onTimeChange }) => {
   const handleTimeChange = (newValue) => {
-    // Format time as HH:mm:ss
+    // Format time as HH:mm:ss string
     const formattedTime = newValue.format("HH:mm:ss");
     onTimeChange(formattedTime);
   };

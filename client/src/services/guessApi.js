@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchUserGuesses = async (userId) => {
   try {
-    const response = await axios.get(`/api/guesses/${userId}/`);
+    const response = await axios.get(`/api/guesses/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching user guesses: ", error);
@@ -12,7 +12,6 @@ export const fetchUserGuesses = async (userId) => {
 
 export const submitNewGuess = async (newGuess) => {
   try {
-    console.log("new guess is: ", newGuess);
     const response = await axios.post("/api/guesses", newGuess);
     return response.data;
   } catch (error) {

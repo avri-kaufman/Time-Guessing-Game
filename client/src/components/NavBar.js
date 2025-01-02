@@ -5,29 +5,32 @@ import logo from "../assets/jooba_logo.png";
 function NavBar() {
   return (
     <Navbar
+      className="shadow-sm"
       style={{
-        backgroundColor: "FFFFFF",
-        transition: "color 0.3s ease",
+        backgroundColor: "#FFFFFF",
+        transition: "all 0.3s ease",
       }}
       expand="lg"
       sticky="top"
     >
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" className="d-flex align-items-center">
           <img
             src={logo}
             alt="JOOBA Logo"
             style={{
-              height: "50px",
+              height: "40px",
               width: "auto",
+              transition: "transform 0.3s ease",
             }}
+            className="hover-scale"
           />
         </Navbar.Brand>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <button type="button" class="btn btn-outline-dark">
+        <div className="d-flex gap-2">
+          <button type="button" className="btn btn-outline-primary">
             ENG
           </button>
-          <button type="button" class="btn btn-outline-dark">
+          <button type="button" className="btn btn-outline-primary">
             Hebrew
           </button>
         </div>
